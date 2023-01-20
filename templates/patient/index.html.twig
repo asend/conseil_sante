@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patient index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'listePatient'|trans }}</h1>
+
+        <table class="table" id="datatable">
+            <thead>
+                <tr>
+                    {# <th>Id</th> #}
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Lieu_naissance</th>
+                    <th>Matricule</th>
+                    <th>Lieu_service</th>
+                    {# <th>Date_entree_service</th> #}
+                    <th>Nombre_enfant</th>
+                    <th>Adresse</th>
+                    {# <th>Telephone_bureau</th>
+                    <th>Telephone_personnel</th> #}
+                    {# <th>Situation_matrimoniale</th> #}
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for patient in patients %}
+                <tr>
+                    {# <td>{{ patient.id }}</td> #}
+                    <td>{{ patient.prenom }}</td>
+                    <td>{{ patient.nom }}</td>
+                    <td>{{ patient|age }}</td>
+                    <td>{{ patient.lieuNaissance }}</td>
+                    <td>{{ patient.matricule }}</td>
+                    <td>{{ patient.lieuService }}</td>
+                    {# <td>{{ patient.dateEntreeService ? patient.dateEntreeService|date('Y-m-d') : '' }}</td> #}
+                    <td>{{ patient.nombreEnfant }}</td>
+                    <td>{{ patient.adresse }}</td>
+                    <td>
+                        <a href="{{ path('app_patient_show', {'id': patient.id}) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                        <a href="{{ path('app_patient_edit', {'id': patient.id}) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="{{ path('app_delete_patient', {'id': patient.id}) }}" class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce patient?');"><i class="fa fa-trash"></i></a>
+
+                        {# {{ include('patient/_delete_form.html.twig') }} #}
+                        {# <a href="{{ path('app_questionnaire_new', {'id': patient.id}) }}">questionnaire</a> #}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_patient_new') }}" class="btn btn-primary">{{ 'creerNouvelPatient'|trans }}</a>
+    </div>
+{% endblock %}

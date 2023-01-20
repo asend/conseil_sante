@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Questionnaire{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'questionnaire' | trans }}</h1>
+        {% if questionnaires | length > 0 %}
+            <table>
+                <thead>
+                    <tr>
+                        <td>Objet</td>
+                        <td>Decision</td>
+                        <td>Date Consil</td>
+                    </tr>
+                </thead>
+                <tboddy>
+                    {% for q in questionnaires %}
+                        <tr>
+                            <td>{{q.q8.nom}}</td>
+                            {# <td>
+                            {% for demande in q.q2 %}
+                                <div>{{demande.nom}}</div>
+                            {% endfor %}
+                            </td> #}
+                            <td>{{q.decisionConseil}}</td>
+                            <td>{{q.conseil.nom}}</td>
+                        </tr>
+                    {% endfor %}
+                </tboddy>
+            </table>
+        {% endif %}
+
+        {{ include('questionnaire/_form.html.twig', {'button_label': 'btnEnregistrer'|trans , 'id': conseil.id}) }}
+
+        {# <a href="{{ path('app_questionnaire_index') }}">back to list</a> #}
+    </div>
+    
+{% endblock %}

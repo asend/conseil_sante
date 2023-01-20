@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souhait index{% endblock %}
+
+{% block body %}
+    <h1>Souhait index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for souhait in souhaits %}
+            <tr>
+                <td>{{ souhait.id }}</td>
+                <td>{{ souhait.nom }}</td>
+                <td>
+                    <a href="{{ path('app_souhait_show', {'id': souhait.id}) }}">show</a>
+                    <a href="{{ path('app_souhait_edit', {'id': souhait.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_souhait_new') }}">Create new</a>
+{% endblock %}

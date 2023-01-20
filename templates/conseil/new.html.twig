@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Conseil{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{'creerUnNouveauConseil' | trans}}</h1>
+
+        {{ include('conseil/_form.html.twig', {'button_label': 'btnEnregistrer'|trans, 'btn_c': 'btnsave'}) }}
+
+        {# <a href="{{ path('app_conseil_index') }}">back to list</a> #}
+
+    </div>
+{% endblock %}

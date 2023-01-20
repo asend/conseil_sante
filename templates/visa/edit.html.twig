@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Visa{% endblock %}
+
+{% block body %}
+    <h1>Edit Visa</h1>
+
+    {{ include('visa/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_visa_index') }}">back to list</a>
+
+    {{ include('visa/_delete_form.html.twig') }}
+{% endblock %}

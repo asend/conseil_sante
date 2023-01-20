@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questionnaire index{% endblock %}
+
+{% block body %}
+    <h1>Questionnaire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Q1</th>
+                <th>Q2autre</th>
+                <th>Q3</th>
+                <th>Q4</th>
+                <th>Q4datesuspension</th>
+                <th>Q3datecessation</th>
+                <th>Q5</th>
+                <th>Q6</th>
+                <th>Q7</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for questionnaire in questionnaires %}
+            <tr>
+                <td>{{ questionnaire.id }}</td>
+                <td>{{ questionnaire.q1 ? 'Yes' : 'No' }}</td>
+                <td>{{ questionnaire.q2autre }}</td>
+                <td>{{ questionnaire.q3 ? 'Yes' : 'No' }}</td>
+                <td>{{ questionnaire.q4 ? 'Yes' : 'No' }}</td>
+                <td>{{ questionnaire.q4datesuspension ? questionnaire.q4datesuspension|date('Y-m-d') : '' }}</td>
+                <td>{{ questionnaire.q3datecessation ? questionnaire.q3datecessation|date('Y-m-d') : '' }}</td>
+                <td>{{ questionnaire.q5 }}</td>
+                <td>{{ questionnaire.q6 }}</td>
+                <td>{{ questionnaire.q7 }}</td>
+                <td>
+                    <a href="{{ path('app_questionnaire_show', {'id': questionnaire.id}) }}">show</a>
+                    <a href="{{ path('app_questionnaire_edit', {'id': questionnaire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('app_questionnaire_new') }}">Create new</a> #}
+{% endblock %}

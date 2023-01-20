@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patient{% endblock %}
+
+{% block body %}
+    <h1 class="align-center">CONSEIL DE SANTE</h1>
+
+    <table class="table">
+        <tbody>
+            {# <tr>
+                <th>Id</th>
+                <td>{{ patient.id }}</td>
+            </tr> #}
+            <tr>
+                <th>Prenom</th>
+                <td>{{ patient.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ patient.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date_naissance</th>
+                <td>{{ patient.dateNaissance ? patient.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_naissance</th>
+                <td>{{ patient.lieuNaissance }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ patient.matricule }}</td>
+            </tr>
+            <tr>
+                <th>Lieu_service</th>
+                <td>{{ patient.lieuService }}</td>
+            </tr>
+            <tr>
+                <th>Date_entree_service</th>
+                <td>{{ patient.dateEntreeService ? patient.dateEntreeService|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nombre_enfant</th>
+                <td>{{ patient.nombreEnfant }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ patient.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Telephone_bureau</th>
+                <td>{{ patient.telephoneBureau }}</td>
+            </tr>
+            <tr>
+                <th>Telephone_personnel</th>
+                <td>{{ patient.telephonePersonnel }}</td>
+            </tr>
+            <tr>
+                <th>Situation_matrimoniale</th>
+                <td>{{ patient.situationMatrimoniale }}</td>
+            </tr>
+            {% if patient.questionnaires | length > 0 %}
+                <tr>
+                    <th>Avez-vous eu dans le passé un dossier auprès du conseil de santé ?</th>
+                    <th>{{ patient.questionnaires.last|q1}}</th>
+                </tr>
+                <tr>
+                    <th>Si oui quel en état l'objet ?</th>
+                    {% for q2 in patient.questionnaires.last.q2 %}
+                        <th>{{ q2.nom }}</th>
+                    {% endfor %}
+                    
+                </tr>
+            {% endif %}
+            
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('app_patient_index') }}">back to list</a>
+
+    <a href="{{ path('app_patient_edit', {'id': patient.id}) }}">edit</a> #}
+
+    {# {{ include('patient/_delete_form.html.twig') }} #}
+{% endblock %}

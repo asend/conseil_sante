@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visa index{% endblock %}
+
+{% block body %}
+    <h1>Visa index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Visa</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for visa in visas %}
+            <tr>
+                <td>{{ visa.id }}</td>
+                <td>{{ visa.visa }}</td>
+                <td>
+                    <a href="{{ path('app_visa_show', {'id': visa.id}) }}">show</a>
+                    <a href="{{ path('app_visa_edit', {'id': visa.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_visa_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "baasepdf.html.twig" %}
+
+{% block body %}
+<div class="row text-center">
+    <div class="col">
+        <span>REPUBLIQUE DU SENEGAL</span> <br>
+        Un Peuple - Un But - Une Foi <br>
+        ................. <br>
+        Ministere de la Fonctionpublique, et du <br>
+        Renouveau du Service public <br>
+        ................. <br>
+        centre Médico-social de la Fonction <br>
+        Le Conseil de Santé
+    </div>
+    <div class="col">
+        No 00065 MFPRSP/CMSFP/CS
+    </div>
+</div>
+<p>&nbsp;</p>
+<div class="row text-center">
+    <div class="col">
+        <h3>CERTIFICAT DE VISITE <br> CONSEIL DE SANTE <br> </h3>
+         ***********
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Nous soussigné, membres du Conseil de Santé de Dakar, certifions que : <br>
+            <span>{{ 'prenom'|trans }} {{ 'nom'|trans }}</span>, matricule de solde {{ 'matricule'|trans }} en service au {{ 'service'|trans }} <br>
+            Né(e) le {{ 'dateNaissance'|trans }} à {{ 'lieuNaissance'|trans }}. <br>
+            Présenté(e) au Conseil de Santé par le Médecin Chef Dr SARR du Centre Médico-Social de la fonction publique. <br>
+            Agissant conformément aux prescriptions des textes en vigueur, est atteint(e) de (état actuel):
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            Estimons en conséquence = Décision du Conseil:
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+
+        </div>
+    </div>
+    <p class="text-center">Fait à Dakar, le</p>
+    <div class="row">
+        <div class="col"><span class="tdul">Le Président</span></div>
+        <div class="col"><span class="tdul">Les Membres du Conseil de Santé</span></div>
+    </div>
+</div>
+
+    
+{% endblock %}

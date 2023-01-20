@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evasan index{% endblock %}
+
+{% block body %}
+    <h1>Evasan index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Accompagnant</th>
+                <th>Destination</th>
+                <th>Montant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evasan in evasans %}
+            <tr>
+                <td>{{ evasan.id }}</td>
+                <td>{{ evasan.accompagnant }}</td>
+                <td>{{ evasan.destination }}</td>
+                <td>{{ evasan.montant }}</td>
+                <td>
+                    <a href="{{ path('app_evasan_show', {'id': evasan.id}) }}">show</a>
+                    <a href="{{ path('app_evasan_edit', {'id': evasan.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evasan_new') }}">Create new</a>
+{% endblock %}

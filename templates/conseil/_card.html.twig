@@ -1,0 +1,14 @@
+<div class="col-md-3">
+    <div class="card">
+                    {# <img src="..." class="card-img-top" alt="..."> #}
+        <div class="card-body">
+            <h5 class="card-title">{{ conseil.nom }}</h5>
+            <p class="card-text">{{ conseil.description }}</p>
+            <a href="{{ path('app_conseil_show', {'id': conseil.id}) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+            <a href="{{ path('app_conseil_edit', {'id': conseil.id}) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+            <a href="{{ path('app_delete_conseil', {'id': conseil.id}) }}" class="btn btn-danger" {% if (conseil.patients|length > 0) %} style="pointer-events: none; opacity: 0.4;" {% endif %} ><i class="fa fa-trash"></i></a>
+            <a href="{{ path('app_conseil_patient', {'id': conseil.id}) }}" class="btn btn-secondary"><i class="fa fa-user-plus"></i></a>
+        </div>
+        <div class="card-footer bg-transparent border-primary"> <a href="{{ path('coneil_patient', {'id': conseil.id}) }}" class="btn btn-info"><i class="fa fa-users"></i> {{ conseil.patients | length }} patients</a></div>
+    </div>
+</div>

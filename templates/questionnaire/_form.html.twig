@@ -1,0 +1,68 @@
+{{ form_start(form, {'attr': {'id': 'questionnaire'}}) }}
+    <div class="row">
+        <div>{{ form_row(form.q1, {'label': 'q1'|trans}) }}</div>
+    </div>
+    <div class="row" id="q2">
+        <div>
+            {{ form_row(form.q2, {'label': 'q2'|trans})}}
+        </div> 
+    </div>
+    <div class="row" id="r_questionnaire_q2autre">
+        <div>
+            {{ form_row(form.q2autre, {'label': 'q2autre'|trans})}}
+        </div> 
+    </div>
+    <div class="row">
+        <div>
+            {{ form_row(form.q3, {'label': 'q3'|trans})}}
+        </div> 
+    </div>
+    <div class="row" id="datecessation">
+        <div>
+            {{ form_row(form.q3datecessation, {'label': 'q3datecessation'|trans})}}
+        </div> 
+    </div>
+    
+    <div class="row">
+        <div>
+            {{ form_row(form.q4, {'label': 'q4'|trans})}}
+        </div> 
+    </div>
+    <div class="row" id="datesuspension">
+        <div>
+            {{ form_row(form.q4datesuspension, {'label': 'q4datesuspension'|trans})}}
+        </div> 
+    </div>
+    <div class="row">
+        <div>
+            {{ form_row(form.q5, {'label': 'q5'|trans})}}
+        </div> 
+    </div>
+    <div class="row">
+        <div>
+            {{ form_row(form.q6, {'label': 'q6'|trans})}}
+        </div> 
+    </div>
+    <div class="row">
+        <div>
+            {{ form_row(form.q7, {'label': 'q7'|trans})}}
+        </div> 
+    </div>
+    <div class="row">
+        <div>
+            {{ form_row(form.q8, {'label': 'q8'|trans})}}
+        </div> 
+            {{ form_row(form.lieu_de_rapprochement) }}
+    </div>
+    {{ form_row(form.demande_traduction) }}
+    <fieldset>INFORMATION SUPPLEMENTAIRE</fieldset>
+    {{ form_rest(form) }}
+    <button class="btn btn-btnsave">{{ button_label|default('Save') }}</button>
+    <a href="{{ path('coneil_patient', {'id': id}) }}" class="btn btn-btnback">{{'btnRetour'|trans}}</a>
+    {% if app.request.attributes.get('_route') == 'app_edit_questionnaire' %}
+        <a href="{{ path('app_delete_questionnaire', {'id': idQ}) }}" class="btn btn-btndelete">{{ 'btnSupprimer'| trans }} </a>
+    {% endif %}
+{{ form_end(form) }}
+
+
+

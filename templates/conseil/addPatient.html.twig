@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Conseil{% endblock %}
+
+{% block body %}
+    <h1>Ajout de patient: {{ conseil.nom }}</h1>
+
+    {{ include('conseil/_formAddPatient.html.twig', {'button_label': 'btnEnregistrer'|trans}) }}
+
+    {# <a href="{{ path('app_conseil_index') }}">back to list</a> #}
+{% endblock %}

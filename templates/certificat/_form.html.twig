@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+    {{ form_row(form.avis_traitant) }}
+    {{ form_row(form.plainte_doleance) }}
+    {{ form_row(form.examen_clinique) }}
+    {{ form_row(form.avis_medecin_conseil) }}{{ form_row(form.examen) }}
+    <div class="row" id="examen">
+        {{ form_row(form.examens_complementaires)}}
+    </div>
+    {{ form_row(form.expertise) }}
+    <div class="row" id="expertise">
+        {{ form_row(form.expertise_demandee)}}
+    </div>
+    
+    {{ form_rest(form) }}
+    <button class="btn btn-{{btn_c}}">{{ button_label|default('Save') }}</button>
+    {% if app.request.attributes.get('_route') == 'app_certificat_edit' %}
+        {# <a href="{{ path('app_delete_certificat', {'id': certificat.id}) }}" class="btn btn-btndelete" onclick="return confirm('Etes-vous sûr de vouloir supprimer cet élément?');">{{ 'btnSupprimer'|trans }}</a> #}
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'app_certificat_edit' %}
+        <a href="{{ path('coneil_patient', {'id': getQuestionnaireByCertificat(certificat.id).conseil.id}) }}" class="btn btn-btnback">{{ 'btnRetour' | trans}}</a>
+    {% endif %}
+
+    {% if app.request.attributes.get('_route') == 'app_certificat_new_patient' %}
+            <a href="{{ path('coneil_patient', {'id': questionnaire.conseil.id}) }}" class="btn btn-btnback">{{ 'btnRetour' | trans}}</a>
+    {% endif %}
+
+{{ form_end(form) }}

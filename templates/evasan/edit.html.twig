@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Evasan{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'editEvasan'|trans }}</h1>
+
+        {{ include('evasan/_form.html.twig', {'button_label': 'btnMettreAjour'|trans, 'btn_c': 'btnupdate'}) }}
+
+        {# <a href="{{ path('app_evasan_index') }}">back to list</a> #}
+
+        {# {{ include('evasan/_delete_form.html.twig') }} #}
+
+    </div>
+{% endblock %}

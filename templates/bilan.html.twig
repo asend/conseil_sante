@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Resume</title>
+    {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+</head>
+<body>
+{# {{ dump(listPatient(conseil)) }} #}
+
+    <div style="margin: 0 auto;display: block;">
+        <h4 style="text-align: center ;">{% trans %}min1{% endtrans %} {% trans %}min2{% endtrans %}</h4>
+        <h4 style="text-align: center ;"> {% trans %}adresseCMS{% endtrans %} </h4>
+        <h4 style="text-align: center ;"> {% trans %}libelleCS{% endtrans %} </h4>
+        <h4 style="text-align: center ;">{{ conseil.nom }}</h4>
+        {% for k , v in listPatient(conseil) %}
+            <h5>{{ k }}</h5>
+            <table width="100%" border="1">
+                <thead>
+                    <tr>
+                        <td>ETAT CIVIL</td>
+                        <td>DOSSIER MEDICAL</td>
+                        {% if k == "un rapprochement" %}
+                            <td>LIEU DE RAPPROCHEMENT</td>
+                        {% endif %}
+                        <td>DECISION</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for q in v %}
+                        {% if q.certificat.user == app.user %}
+                        <tr>
+                            <td>{{q.patient | etatCivil}}</td>
+                            <td>
+                                <ul>
+                                    <li>AVIS MEDECIN TRAITANT: {{ q.certificat.avisTraitant }} </li>
+                                    <li>AVIS MEDECIN CONSEIL: {{ q.certificat.avisMedecinConseil }}</li>
+                                </ul>
+                                
+                            </td>
+                            {% if k == "un rapprochement" %}
+                                <td>{{ q.lieuDeRapprochement }}</td>
+                            {% endif %}
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+        {# <table width="100%" border="1">
+            <thead>
+                <tr>
+                    <td>ETAT CIVIL</td>
+                    <td>MEDECIN TRAITANT</td>
+                    <td>DECISION</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in conseil.patients %}
+                    {% if getQuestionnaire(conseil.id, patient.id).certificat %}
+                        <tr>
+                            <td>{{patient | etatCivil}}</td>
+                            <td>{{ getQuestionnaire(conseil.id, patient.id).certificat.avisTraitant }}</td>
+                            <td></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table> #}
+    </div>
+</body>
+</html>

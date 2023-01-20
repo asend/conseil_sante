@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadre index{% endblock %}
+
+{% block body %}
+    <h1>Cadre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cadre in cadres %}
+            <tr>
+                <td>{{ cadre.id }}</td>
+                <td>{{ cadre.nom }}</td>
+                <td>
+                    <a href="{{ path('app_cadre_show', {'id': cadre.id}) }}">show</a>
+                    <a href="{{ path('app_cadre_edit', {'id': cadre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cadre_new') }}">Create new</a>
+{% endblock %}

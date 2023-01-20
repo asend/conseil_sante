@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Souhait{% endblock %}
+
+{% block body %}
+    <h1>Edit Souhait</h1>
+
+    {{ include('souhait/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_souhait_index') }}">back to list</a>
+
+    {{ include('souhait/_delete_form.html.twig') }}
+{% endblock %}

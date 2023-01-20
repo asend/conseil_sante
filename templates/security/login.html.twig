@@ -1,0 +1,80 @@
+{% extends 'baseauth.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<div class="login-box">
+  <div class="login-logo">
+    <img src="{{ asset('build/images/cmslogo.jpg')}}" alt="logo" class="logo" >
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">CONNEXION</p>
+      <form method="post">
+        {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {% if app.user %}
+          <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+          </div>
+          {% endif %}
+        <div class="input-group mb-3">
+          <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          {# <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div> #}
+          <!-- /.col -->
+          <div class="col">
+            <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
+          </div>
+          <!-- /.col -->
+        </div>
+        <input type="hidden" name="_csrf_token"
+          value="{{ csrf_token('authenticate') }}"
+        >
+      </form>
+
+      
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1">
+        <a href="#">Mot de passe oublié</a>
+      </p>
+      <p class="mb-0">
+        <a href="{{path('app_register')}}" class="text-center">Céer un nouveau compte</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+{% endblock %}

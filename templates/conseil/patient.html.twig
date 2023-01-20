@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseil index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center"><a href="{{ path('app_conseil_deliberer', {'id': conseil.id})}}">Les patients du conseil {{ conseil.nom }}</a></h1>
+        <a href="{{ path('app_conseil_patient', {'id': conseil.id}) }}" class="btn btn-secondary">
+            {{'btnAddUsers' | trans }}
+        </a>
+        <p>
+            &nbsp;
+        </p>
+        <a href="">borderau</a>
+        <table class="table" id="datatable">
+            <thead>
+                <tr>
+                    {# <th>Id</th> #}
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Lieu_naissance</th>
+                    <th>Matricule</th>
+                    <th>Lieu_service</th>
+                    <th>Date_entree_service</th>
+                    <th>Adresse</th>
+                    {# <th>Telephone_bureau</th>
+                    <th>Telephone_personnel</th> #}
+                    {# <th>Situation_matrimoniale</th> #}
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for patient in conseil.patients %}
+                {# {% if getQuestionnaire(conseil.id, patient.id) %}
+                        {% if getQuestionnaire(conseil.id, patient.id).certificat %}
+                            {% if getQuestionnaire(conseil.id, patient.id).certificat | getCert == 1 %}
+                                <tr style="color: red;">
+                            {% else %}
+                                <tr>
+                            {% endif %}
+
+                        {% endif %}
+
+                {% endif %} #}
+                {% if getQuestionnaire(conseil.id, patient.id) and getQuestionnaire(conseil.id, patient.id).certificat and getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 2 %}
+                    <tr style="color:red">
+                {% elseif getQuestionnaire(conseil.id, patient.id) and getQuestionnaire(conseil.id, patient.id).certificat and getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 1 %}
+                    <tr style="color:green">
+                {% else %}
+                    <tr>
+                {% endif %}
+
+                {# <tr {{ getQuestionnaire(conseil.id, patient.id) and getQuestionnaire(conseil.id, patient.id).certificat and getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 2   ? 'style="color:red;"' : '' }}> #}
+                
+                    {# <td>{{ patient.id }}</td> #}
+                    <td>{{ patient.prenom }}</td>
+                    <td>{{ patient.nom }}</td>
+                    <td>{{ patient|age }}</td>
+                    <td>{{ patient.lieuNaissance }}</td>
+                    <td>{{ patient.matricule }}</td>
+                    <td>{{ patient.lieuService }}</td>
+                    <td>{{ patient.dateEntreeService ? patient.dateEntreeService|date('Y-m-d') : '' }}</td>
+                    <td>{{ patient.adresse }}</td>
+                    {# <td>{{ patient.telephoneBureau }}</td>
+                    <td>{{ patient.telephonePersonnel }}</td> #}
+                    {# <td>{{ patient.situationMatrimoniale }}</td> #}
+                    <td>
+                    {% if getQuestionnaire(conseil.id, patient.id) %}
+                        {# {% if getQuestionnaire(conseil.id, patient.id).certificat %}
+                            {% if getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 0 %}
+                                    0
+                            {% elseif getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 1 %}
+                                    1
+                                    {% elseif getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 2 %}
+                                    2
+                                    {% elseif getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 3 %}
+                                    3
+                            {% else %}
+                                    4
+                            {% endif %}
+                        {% endif %} #}
+                    {% endif %}
+                        
+                        <a href="{{ path('app_patient_show', {'id': patient.id}) }}"><i class="fa fa-eye"></i></a>
+                        <a href="{{ path('app_patient_edit', {'id': patient.id}) }}"><i class="fa fa-edit"></i></a>
+                        {% if getQuestionnaire(conseil.id, patient.id) %}
+                            {# <a href="{{ path('app_questionnaire_edit', {'id': getQuestionnaire(conseil.id, patient.id).id}) }}"><i class="fa fa-question-circle"></i></a> #}
+                            <a href="{{ path('app_edit_questionnaire', {'id': getQuestionnaire(conseil.id, patient.id).id, 'idC': conseil.id, 'idP': patient.id}) }}"><i class="fa fa-question-circle"></i></a>
+                        {% else %}
+                            {# <a href="{{ path('app_questionnaire_new', {'id': patient.id}) }}">questionnaire</a> #}
+                            <a href="{{ path('app_questionnaire_conseil_patient_new', {'idC': conseil.id , 'idP': patient.id}) }}"><i class="fa fa-question-circle"></i></a>
+
+                            
+                            
+                        {% endif %}                    
+                        {% if is_granted('ROLE_EDITOR') %}
+                            {% if getQuestionnaire(conseil.id, patient.id) %} 
+                                
+                                {% if getQuestionnaire(conseil.id, patient.id) | isExist %}
+                                    <a href="{{ path('app_certificat_edit', {'id': getQuestionnaire(conseil.id, patient.id).certificat.id}) }}"><i class="fa fa-stethoscope"></i></a>
+                                    
+                                {% else %}
+                                <a href="{{ path('app_certificat_new_patient', {'id': getQuestionnaire(conseil.id, patient.id).id}) }}"><i class="fa fa-stethoscope"></i></a>
+                                {% endif %}
+                                {% if getQuestionnaire(conseil.id, patient.id).certificat %}
+                                    {% if getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 1 %}
+                                        {% if is_granted('ROLE_MEDECIN') %}
+                                            <a href="{{ path('app_certificat_edit', {'id': getQuestionnaire(conseil.id, patient.id).certificat.id}) }}"><i class="fa-solid fa-vials"></i></a>
+                                        {% else %}
+                                        <a href="{{ path('app_pdf_expertise', {'id' : getQuestionnaire(conseil.id, patient.id).id }) }}"><i class="fa-solid fa-vials"></i></a>
+                                        {% endif %}
+                                        {# <a href="{{ path('app_certificat_new_patient', {'id': getQuestionnaire(conseil.id, patient.id).id}) }}"><i class="fa-solid fa-vials"></i></a> #}
+                                        
+                                    {% elseif getQuestionnaire(conseil.id, patient.id).certificat | getExpertStatus == 2 %}
+                                        <a href="{{ path('app_certificat_edit', {'id': getQuestionnaire(conseil.id, patient.id).certificat.id}) }}"><i class="fa-solid fa-vials"></i></a>
+                                        {# <a href="{{ path('app_pdf_expertise', {'id' : getQuestionnaire(conseil.id, patient.id).id }) }}"><i class="fa-solid fa-vials"></i></a> #}
+                                    {% else %}
+                                    <a href="{{ path('app_certificat_edit', {'id': getQuestionnaire(conseil.id, patient.id).certificat.id}) }}"><i class="fa-solid fa-vials"></i></a>
+                                    {# <a href="{{ path('app_certificat_new_patient', {'id': getQuestionnaire(conseil.id, patient.id).id}) }}"><i class="fa-solid fa-vials"></i></a> #}
+                                        {# <a href="{{ path('app_pdf_expertise', {'id' : getQuestionnaire(conseil.id, patient.id).id }) }}"><i class="fa-solid fa-vials"></i></a> #}
+                                    {% endif %}
+                                {% endif %}
+                                {% if getQuestionnaire(conseil.id, patient.id).certificat %}
+                                    <a href="{{ path('app_questionnaire_ceritificat', {'id': getQuestionnaire(conseil.id, patient.id).id}) }}"><i class="fa fa-certificate"></i></a>
+                                {% endif %}
+                            {% endif %}
+                            {# getEvasan(getQuestionnaire(conseil.id, patient.id).id).id #}
+                        {% endif %}
+                        {% if getQuestionnaire(conseil.id, patient.id) and isEvasan(getQuestionnaire(conseil.id, patient.id).id) %}
+                            {% if is_granted('ROLE_MEDECIN') and isEvasan(getQuestionnaire(conseil.id, patient.id).id) %}
+                            {# <div class="btn-group" role="group" aria-label="Button group with nested dropdown"> #}
+
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-ambulance"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <li>
+                                <a class="dropdown-item" href="{{ path('app_evasan_edit', {'id': getEvasan(getQuestionnaire(conseil.id, patient.id).id).id}) }}">Compléter le formulaire</a>
+                                {% if getEvasan(getQuestionnaire(conseil.id, patient.id).id).isValid() %}
+                                    <a class="dropdown-item" href="{{ path('app_home_test', {'id': getEvasan(getQuestionnaire(conseil.id, patient.id).id).id }) }}">Voir décision</a>
+                                {% endif %}
+                                </li>
+                                <li><a class="dropdown-item" href="{{ path('app_generate_excel', {'id': getEvasan(getQuestionnaire(conseil.id, patient.id).id).id })}}">Générer facture</a></li>
+                                </ul>
+                            </div>
+{# </div> #}
+                            {# <ul class="navbar-nav bg-custom-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+                            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    
+                    <i class="fa-solid fa-hospital-user"></i>
+                    <span>Patients</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="{{ path('app_patient_index') }}">Lister</a>
+                        <a class="collapse-item" href="{{ path('app_patient_new') }}">Ajouter</a>
+                    </div>
+                </div>
+            </li>
+                            </ul> #}
+                            {# reserve #}
+                                {# <a href="{{ path('app_evasan_edit', {'id': getEvasan(getQuestionnaire(conseil.id, patient.id).id).id}) }}"><i class="fa fa-ambulance"></i></a>
+                                {% if getEvasan(getQuestionnaire(conseil.id, patient.id).id).isValid() %}
+                                    
+                                    <a href="{{ path('app_home_test', {'id': getEvasan(getQuestionnaire(conseil.id, patient.id).id).id }) }}">decision</a>
+                                {% endif %} #}
+                                {# end reserve #}
+                            {% endif %}
+                        {% endif %}
+                        
+                        {# {% if is_granted('ROLE_MEDECIN') and isEvasan(getQuestionnaire(conseil.id, patient.id).id) %} #}
+                            {# <a href="{{ path('app_edit_evasan', {'idQ': getQuestionnaire(conseil.id, patient.id).id , 'idE': getEvasan(getQuestionnaire(conseil.id, patient.id).id).id}) }}">EVASAN</a> #}
+                            {# 11111<a href="{{ path('app_evasan_edit', {'id': getEvasan(getQuestionnaire(conseil.id, patient.id).id).id}) }}"><i class="fa fa-ambulance"></i></a> #}
+                        {# {% endif %} #}
+                        
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+{# <a href="{{ path('app_conseil_patient', {'id': conseil.id}) }}">Create new Test</a> #}
+    
+{% endblock %}

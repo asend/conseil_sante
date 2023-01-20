@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souhait{% endblock %}
+
+{% block body %}
+    <h1>Souhait</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ souhait.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ souhait.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_souhait_index') }}">back to list</a>
+
+    <a href="{{ path('app_souhait_edit', {'id': souhait.id}) }}">edit</a>
+
+    {{ include('souhait/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseil{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ conseil.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ conseil.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ conseil.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_conseil_index') }}" class="btn btn-btnback">{{'btnRetour'|trans}}</a>
+
+        <a href="{{ path('app_conseil_edit', {'id': conseil.id}) }}" class="btn btn-btnupdate">{{'btnMettreAjour'|trans}}</a>
+        {% if (conseil.patients|length == 0) %}
+            <a href="{{ path('app_delete_conseil', {'id': conseil.id}) }}" class="btn btn-btndelete">{{'btnSupprimer'|trans}}</a>
+        {# {{ include('conseil/_delete_form.html.twig') }} #}
+        {% endif %}
+    </div>
+{% endblock %}

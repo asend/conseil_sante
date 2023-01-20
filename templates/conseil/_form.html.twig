@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-{{btn_c}}">{{ button_label|default('Save') }}</button>
+    {% if app.request.attributes.get('_route') == 'app_conseil_edit' %}
+        <a href="{{ path('app_delete_conseil', {'id': conseil.id}) }}" class="btn btn-btndelete" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce conseil?');">{{ 'btnSupprimer'|trans }}</a>
+    {% endif %}
+    <a href="{{ path('app_conseil_index') }}" class="btn btn-btnback">{{'btnRetour'|trans}}</a>
+{{ form_end(form) }}

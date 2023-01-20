@@ -1,0 +1,50 @@
+// #questionnaire_q1 {
+//     display: grid;
+//     grid-template-rows: 16px auto;
+//     grid-template-columns: 16px auto;
+//     row-gap: 20px;
+//     column-gap: 8px;
+//     padding: 8px 0 16px 0;
+// }
+// #questionnaire_q1:nth-child(2) {
+//     line-height: 1;
+// }
+// label[for='questionnaire_q2autre'] {
+//     display: block;
+// }
+// #questionnaire_q2 {
+//     padding: 16px 0;
+//     display: grid;
+//     grid-template-columns: 16px auto;
+//     column-gap: 8px;
+//     row-gap: 16px;
+// }
+fieldset>legend {
+    font-weight: bold;
+}
+
+.row>div>div>label {
+    font-weight: bold;
+}
+
+.row>div>span {
+    font-weight: bold;
+}
+
+.tdul {
+    text-decoration: underline;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.bg-custom-nav {
+    background-color: rgb(131, 171, 131) !important;
+}
+
+#evasan_choice>div:first-of-type {
+    // display: none;
+}

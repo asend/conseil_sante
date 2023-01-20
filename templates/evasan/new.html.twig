@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Evasan{% endblock %}
+
+{% block body %}
+    <h1>{{ 'nouveauEvasan'|trans }}</h1>
+
+    {{ include('evasan/_form.html.twig', {'button_label': 'btnEnregistrer'|trans, 'btn_c': 'btnsave'}) }}
+
+    {# <a href="{{ path('app_evasan_index') }}">back to list</a> #}
+{% endblock %}

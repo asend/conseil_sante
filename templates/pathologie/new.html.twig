@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Pathologie{% endblock %}
+
+{% block body %}
+    <h1>Create new Pathologie</h1>
+
+    {{ include('pathologie/_form.html.twig') }}
+
+    <a href="{{ path('app_pathologie_index') }}">back to list</a>
+{% endblock %}

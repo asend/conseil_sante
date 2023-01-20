@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Conseil{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'editConseil'|trans }}</h1>
+
+        {{ include('conseil/_form.html.twig', {'button_label': 'btnMettreAjour'|trans, 'btn_c': 'btnupdate'}) }}
+
+    </div>
+{% endblock %}

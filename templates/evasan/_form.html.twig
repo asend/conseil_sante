@@ -1,0 +1,37 @@
+{# {{ dump(form.accompagnant.vars['value'])}} #}
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-md">{{ form_row(form.accompagnant, {'label': 'accompagnant'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.destination, {'label': 'destination'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.devise, {'label': 'devises'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.montant, {'label': 'factureProFormat'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.frais_hospitalisation_soins, {'label': 'fraisHospitalisationSoins'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.date_depart, {'label': 'dateDepart'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.date_retour, {'label': 'dateRetour'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.rv_controle, {'label': 'rvControl'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.date_demande, {'label': 'dateDemande'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.date_virement, {'label': 'dateVirement'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.n_bordereau_ministere_tutelle, {'label': 'nBordereauMinistereTutelle'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.n_date_decision, {'label': 'nDateDecision'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.n_facture_date_transmission_solde, {'label': 'nFactureDateTransmissionSolde'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.n_tresor, {'label': 'nTresor'|trans})}}</div>
+    </div>   
+    {{ form_rest(form) }}
+    <button class="btn btn-{{btn_c}}">{{ button_label|default('Save') }}</button>
+    {# {% if app.request.attributes.get('_route') == 'app_conseil_edit' %}
+        <a href="{{ path('app_delete_conseil', {'id': conseil.id}) }}" class="btn btn-btndelete" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce conseil?');">{{ 'btnSupprimer'|trans }}</a>
+    {% endif %} #}
+    {# <a href="{{ path('app_evasan_index') }}" class="btn btn-btnback">{{'btnRetour'|trans}}</a> #}
+{{ form_end(form) }}
+
+
+
+

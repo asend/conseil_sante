@@ -1,0 +1,70 @@
+{{ form_start(form) }}
+    {# {{ form_widget(form) }} #}
+    <div class="row">
+        <div class="col-md">{{ form_row(form.prenom, {'label': 'prenom'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.nom, {'label': 'nom'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.nombre_enfant, {'label': 'nombreEnfant'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.situation_matrimoniale, {'label': 'situationMatrimoniale'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.adresse, {'label': 'adresseDomicile'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.telephone_bureau, {'label': 'telephoneBureau'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.telephone_personnel, {'label': 'telephoneDomicilePortable'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.date_naissance, {'label': 'dateNaissance'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.lieu_naissance, {'label': 'lieuNaissance'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.tutel, {'label': 'ministere'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.matricule, {'label': 'matricule'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md">{{ form_row(form.lieu_service, {'label': 'lieuService'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.date_entree_service, {'label': 'dateEntreeService'|trans})}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="cadre"> Cadre </label>
+            <select id="cadre" name="cadre" class="form-control" required>
+                <option value="">--Choisir cadre--</option>
+                    {% for cadre in cadres %}
+                        <option {% if patient.cadre == cadre  %} selected {% endif %}  value="{{cadre.id}}">{{cadre.nom}}</option>
+                    {% endfor %}
+            </select>
+        </div>
+    
+        <div class="col-md-6">
+            <label for="corps">Corps </label>
+            <select id="corps" name="corps" class="form-control" required>
+                        {% if patient.cadre %}
+                            {% for corps in patient.cadre.corps %}
+                                <option {% if patient.corps == corps  %} selected {% endif %} value="{{corps.id}}">{{corps.nom}}</option>
+                            {% endfor %}
+                            
+                        {% endif %}
+                        
+                        
+            </select>
+        </div>
+    </div>
+    {# <div class="row">
+        <div class="col-md">{{ form_row(form.corps, {'label': 'corps'|trans})}}</div>
+        <div class="col-md">{{ form_row(form.grade, {'label': 'grade'|trans})}}</div>
+    </div> #}
+
+
+    {{ form_rest(form)}}
+    <button class="btn btn-btnsave">{{ button_label|default('Save') }}</button>
+    {% if app.request.attributes.get('_route') == 'app_patient_edit' %}
+        <a href="{{ path('app_delete_patient', {'id': patient.id}) }}" class="btn btn-btndelete" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce patient?');">{{ 'btnSupprimer'|trans }}</a>
+    {% endif %}
+    <a href="{{ path('app_patient_index') }}" class="btn btn-btnback">{{ 'btnRetour'|trans }}</a>
+    
+
+    
+
+    
+{{ form_end(form) }}

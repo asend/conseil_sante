@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visa{% endblock %}
+
+{% block body %}
+    <h1>Visa</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ visa.id }}</td>
+            </tr>
+            <tr>
+                <th>Visa</th>
+                <td>{{ visa.visa }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_visa_index') }}">back to list</a>
+
+    <a href="{{ path('app_visa_edit', {'id': visa.id}) }}">edit</a>
+
+    {{ include('visa/_delete_form.html.twig') }}
+{% endblock %}

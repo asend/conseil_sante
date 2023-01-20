@@ -1,0 +1,86 @@
+structure: MINISTERE DE LA FONCTION PUBLIQUE ET DE LA TRANSFORMATION DU SERVICE PUBLIC
+prenom: Prénom
+nom: Nom
+dateNaissance: Date de naissance
+lieuNaissance: Lieu de naissance
+matricule: Matricule
+ministere: Ministère
+corps: Corps
+grade: Grade
+lieuService: Lieu de service
+dateEntreeService: Date d'entree en service
+situationMatrimoniale: Situation matrimoniale
+nombreEnfant: Nombre enfants
+adresseDomicile: Adresse domicile
+telephone: Téléphone
+telephoneBureau: Téléphone (Bureau)
+telephoneDomicilePortable: Téléphone (Domicile/Portable)
+cadre: Cadre
+accompagnant: Acoompagnant
+destination: Destination
+devises: Devise
+factureProFormat: Facture Pro Format
+fraisHospitalisationSoins: Frais Hospitalisation et Soins
+dateDepart: Date de départ
+dateRetour: Date de retour
+rvControl: Rv Controle
+dateDemande: Date demande
+dateVirement: Date virement
+nBordereauMinistereTutelle: N° bordereau Ministère de tutelle
+nDateDecision: N° date decision 
+nFactureDateTransmissionSolde: N° Facture Date Transmission
+nTresor: N° Bulci Tresor
+
+q1: Avez-vous eu dans le passé un dossier auprès du conseil de santé ?
+q2: Si oui quel en était l'objet ?
+q2autre: Autres (à préciser)
+q3: Etes vous en activité professionnelle ?
+q3datecessation: précisez la date de cessation de votre activité professionnelle
+q4: Avez-vous votre salaire ?
+q4datesuspension: précisez la date de la suspension du salaire
+q5: Histoire de la maladie (date de début, nature de la maladie actuelle et traitement reçu)
+q6: Quels médecins pouvons-nous contacter pour avoir des informations sur votre état de santé ? (Précisez nom, structure et téléphone)
+q7: Quelles sont les difficultés auxquelles vous etes confrontés lors de l'exécution de vos taches professionnelles ?
+q8: Que souhaitez-vous ?
+
+
+republique: REPUBLIQUE DU SENEGAL
+devise: Un Peuple - Un But - Une Foi
+chrono: N             MFPRSP/CMSFP/CS
+min1: Ministère de la Fonction Publique, et de
+min2: la Transformation du Secteur Public
+cms: Centre Medico - Social de la Fonction Publique
+cs: Le Conseil de Santé
+
+footer: 153 Rue Moussé DIOP, Tél./Fax 33 821 83 47 / Tél 33 821 53 04, e-mail conseilscms@orange.sn
+
+adresseCMS: Centre médico-social de la Fonction publique, 153, rue Moussé Diop, Dakar Plateau
+libelleCS: CONSEIL DE SANTE
+
+listePatient: La liste des patients
+nouveauPatient: Créer un nouveau patient
+creerNouvelPatient: Créer un nouveau patient
+editPatient: Editer patient
+
+listeEvasan: La liste des évacuations sanitaires
+nouveauEvasan: Créer une nouvel Evasan
+creerNouvelEvasan: Créer une nouvel Evasan
+editEvasan: Editer Evacuation Sanitaire
+
+listeConseil: La liste des conseils
+nouveauConseil: Créer un nouveau conseil
+creerNouvelConseil: Créer un nouveau conseil
+editConseil: Editer conseil
+
+creerUnNouveauConseil: Créer un nouveau conseil
+questionnaire: Questionnaire
+
+
+
+
+btnEnregistrer: Enregister 
+btnMettreAjour: Mettre à jour
+btnSupprimer: Supprimer
+btnRetour: Retour à la liste
+btnAddUsers: Ajouter des patients
+
